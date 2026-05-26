@@ -30,13 +30,14 @@ def ask_approval(question: str, options: list[str] = None) -> str:
     """Pause execution and wait for Telegram approval."""
     return wait_for_reply(f"⚠️ APROBACIÓN REQUERIDA\n\n{question}", options)
 
-MENU = ["backend", "frontend", "ambos", "status", "stop"]
+MENU = ["backend", "frontend", "ambos", "marketing", "status", "stop"]
 MENU_HELP = (
-    "backend  — arranca API (puerto 8000)\n"
-    "frontend — arranca UI (puerto 3000)\n"
-    "ambos    — arranca los dos\n"
-    "status   — estado de los procesos\n"
-    "stop     — detener todo y salir"
+    "backend   — arranca API (puerto 8000)\n"
+    "frontend  — arranca UI (puerto 3000)\n"
+    "ambos     — arranca los dos\n"
+    "marketing — busca oportunidades en Reddit y alerta\n"
+    "status    — estado de los procesos\n"
+    "stop      — detener todo y salir"
 )
 
 processes: dict[str, subprocess.Popen] = {}
@@ -84,6 +85,14 @@ def handle_command(cmd: str):
         stop_all()
         send("👋 Todo detenido. Orquestador saliendo.")
         sys.exit(0)
+    elif c == "marketing":
+        send("Lanzando Marketing Agent...")
+        import subprocess
+        subprocess.Popen(
+            [os.path.join(os.path.dirname(__file__), "venv", "Scripts", "python.exe"),
+             "-m", "marketing_agent.agent"],
+            cwd=os.path.dirname(__file__)
+        )
     elif c == "ayuda":
         send(MENU_HELP)
     else:

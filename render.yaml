@@ -3,7 +3,7 @@ services:
     name: testai-qa-backend
     runtime: python
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    startCommand: sh -c "uvicorn backend.main:app --host 0.0.0.0 --port ${PORT}"
     envVars:
       - key: ANTHROPIC_API_KEY
         sync: false

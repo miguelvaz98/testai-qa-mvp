@@ -19,6 +19,11 @@ function incTrials() {
   localStorage.setItem("tqa_trials", getTrials() + 1);
 }
 function updateTrialsUI() {
+  if (isPaid()) {
+    document.getElementById("upgradeBox").classList.add("hidden");
+    document.getElementById("trialsMsg").textContent = "Plan activo — generaciones ilimitadas.";
+    return;
+  }
   const left = MAX_TRIALS - getTrials();
   const el = document.getElementById("trialsMsg");
   if (left > 0) {

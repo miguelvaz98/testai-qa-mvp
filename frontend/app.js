@@ -76,7 +76,8 @@ async function generate() {
     if (!res.ok) {
       const err = await res.json();
       if (res.status === 402) {
-        document.getElementById("upgradeBox").classList.remove("hidden");
+        localStorage.setItem("tqa_trials", MAX_TRIALS);
+        updateTrialsUI();
         return;
       }
       throw new Error(err.detail || "Error del servidor.");

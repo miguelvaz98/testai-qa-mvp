@@ -1,9 +1,10 @@
 from pydantic import BaseModel
-from typing import Literal
+from typing import Literal, Optional
 
 class GenerateRequest(BaseModel):
-    input: str  # frontend code or user story
+    input: str
     framework: Literal["cypress", "playwright", "jest"] = "playwright"
+    session_id: Optional[str] = None
 
 class GenerateResponse(BaseModel):
     framework: str

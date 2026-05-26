@@ -3,6 +3,15 @@ const API = window.location.hostname === "localhost" || window.location.hostname
   : "https://testai-qa-mvp.onrender.com/api";
 const MAX_TRIALS = 3;
 
+function getSessionId() {
+  let id = localStorage.getItem("tqa_session_id");
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem("tqa_session_id", id);
+  }
+  return id;
+}
+
 function getTrials() {
   return parseInt(localStorage.getItem("tqa_trials") || "0");
 }
@@ -43,7 +52,7 @@ async function generate() {
     const res = await fetch(`${API}/generate`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ input, framework }),
+      body: JSON.stringify({ input, framework, session_id: getSessionId() }),
     });
     if (!res.ok) {
       const err = await res.json();

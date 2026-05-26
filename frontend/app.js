@@ -1,6 +1,6 @@
 const API = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
   ? "http://127.0.0.1:8000/api"
-  : "https://testai-qa-backend.onrender.com/api"; // swap when backend is deployed
+  : "https://testai-qa-mvp.onrender.com/api";
 const MAX_TRIALS = 3;
 
 function getTrials() {

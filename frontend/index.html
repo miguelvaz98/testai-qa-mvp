@@ -49,6 +49,16 @@
     <!-- Error -->
     <div id="errorBox" class="hidden bg-red-900/40 border border-red-700 rounded-lg p-4 text-sm text-red-300"></div>
 
+    <!-- Upgrade CTA (shown when trial exhausted) -->
+    <div id="upgradeBox" class="hidden bg-indigo-950 border border-indigo-700 rounded-lg p-5 text-center space-y-3">
+      <p class="text-indigo-200 font-semibold">Has agotado las 5 pruebas gratuitas.</p>
+      <p class="text-gray-400 text-sm">Continúa generando tests sin límite por solo <strong class="text-white">$9/mes</strong>.</p>
+      <button onclick="startCheckout()"
+        class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-8 py-2 rounded-lg transition">
+        Actualizar ahora — $9/mes
+      </button>
+    </div>
+
     <!-- Trials counter -->
     <p class="text-center text-xs text-gray-600" id="trialsMsg"></p>
   </div>

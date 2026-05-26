@@ -5,4 +5,5 @@ python-dotenv==1.2.2
 requests==2.34.2
 httpx==0.28.1
 anthropic
+stripe
 # supabase via httpx (no SDK needed)
